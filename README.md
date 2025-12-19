@@ -30,8 +30,11 @@
 
 # 3. 실행 방법 (How to Run)
  3.1. 필요 라이브러리 설치: `pip install -r requirements.txt`
+ 
  3.2. 실행: `python main.py`
+ 
  3.3. 기업 코드(Ticker) 입력 (예: 삼성전자 `005930.KS`, 애플 `AAPL`)
+ 
  3.4. 결과 그래프 확인 (LSTM 예측선 + 몬테카를로 시뮬레이션 범위)
 
 # 4. 결과 해석
