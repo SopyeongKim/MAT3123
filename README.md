@@ -83,3 +83,8 @@ python main.py
 ● 회색 영역 (Simulations): 1,000번의 랑주뱅 시뮬레이션 결과입니다. 색이 진할수록 실현 가능성이 높은 구간입니다.
 
 ● 주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
+
+
+## 실행 예시
+<img width="788" height="749" alt="image" src="https://github.com/user-attachments/assets/d3bf28ac-cd06-4ebb-b34d-28c42c663f0d" />
+
