@@ -11,6 +11,9 @@
 
 본 프로젝트 [The Langevin Trader]는 딥러닝(LSTM)으로 주가의 장기적인 '추세(Drift)'를 학습하고, 수업 시간에 배운 랑주뱅 역학(Langevin Dynamics)을 적용하여 시장의 무작위성(Noise)을 반영한 "확률적 시뮬레이터"입니다. 사용자가 원하는 기업(한국/미국)의 코드를 입력하면, AI가 해당 기업의 미래 주가 변동 범위를 예측하여 시각화합니다.
 
+
+## 실행 예시
+<img width="788" height="749" alt="image" src="https://github.com/user-attachments/assets/d3bf28ac-cd06-4ebb-b34d-28c42c663f0d" />
 ---
 
 ## 2. 수업 내용 적용 및 기술적 배경 (Theoretical Background)
@@ -85,6 +88,4 @@ python main.py
 ● 주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
 
 
-## 실행 예시
-<img width="788" height="749" alt="image" src="https://github.com/user-attachments/assets/d3bf28ac-cd06-4ebb-b34d-28c42c663f0d" />
 
