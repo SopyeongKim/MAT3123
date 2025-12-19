@@ -89,6 +89,7 @@ python main.py
 
 
 📦 Project Structure
+
 ├── main.py          # 핵심 실행 파일 (LSTM + MCMC 로직)
 
 ├── requirements.txt # 의존성 라이브러리 목록
