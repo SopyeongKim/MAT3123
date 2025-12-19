@@ -55,19 +55,19 @@
 
 ## 4. 실행 방법 (How to Run)
 
-### 4.1 환경 설정필요한 라이브러리를 설치합니다.
+### 4.1 환경 설정 : 필요한 라이브러리를 설치합니다.
 
 Bash
 
 pip install torch numpy pandas matplotlib yfinance scikit-learn
 
-### 4.2 실행터미널에서 아래 명령어를 입력합니다.
+### 4.2 실행 : 터미널에서 아래 명령어를 입력합니다.
 
 Bash
 
 python main.py
 
-### 4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
+### 4.3 입력 예시 : 프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
 
 삼성전자: 엔터(Enter) 키 입력 (기본값)
 
@@ -90,8 +90,12 @@ python main.py
 
 📦 Project Structure
 ├── main.py          # 핵심 실행 파일 (LSTM + MCMC 로직)
+
 ├── requirements.txt # 의존성 라이브러리 목록
+
 ├── README.md        # 프로젝트 설명서
+
 └── results/         # 실행 결과 이미지 저장소
+
     └── example_plot.png
 
