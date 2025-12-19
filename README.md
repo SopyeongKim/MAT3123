@@ -1,7 +1,7 @@
 # <The Langevin Trader: LSTM & SDE 기반 주가 예측 시뮬레이터>
 
-# 1. 프로젝트 개요 (Project Abstract)"
-주가는 하나의 점이 아니라, 확률의 구름(Distribution)으로 예측해야 한다.
+# 1. 프로젝트 개요 (Project Abstract)
+주가는 하나의 점이 아니라, 확률의 구름(Distribution)으로 예측해야 합니다.
 
 기존의 단순 딥러닝 주가 예측은 미래의 불확실성(Uncertainty)을 고려하지 않고 단일 가격만을 예측하여 리스크 관리에 취약했습니다.
 
@@ -55,11 +55,13 @@ $\sigma$ (Diffusion): 최근 주가의 변동성(Volatility)을 계산하여 적
 
 ● 4.1 환경 설정필요한 라이브러리를 설치합니다.
 
-Bashpip install torch numpy pandas matplotlib yfinance scikit-learn
+Bash
+pip install torch numpy pandas matplotlib yfinance scikit-learn
 
 ● 4.2 실행터미널에서 아래 명령어를 입력합니다.
 
-Bashpython main.py
+Bash
+python main.py
 
 ● 4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
 
