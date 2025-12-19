@@ -1,43 +1,80 @@
 # <The Langevin Trader: LSTM & SDE 기반 주가 예측 시뮬레이터>
 
-&lt;기계학습과 응용 기말고사 프로젝트> 학부 기계학습과 응용 수업에서 배운 MCMC와 Langevin Dynamics, 그리고 LSTM을 결합한 프로젝트를 설계.
+# 1. 프로젝트 개요 (Project Abstract)"
+주가는 하나의 점이 아니라, 확률의 구름(Distribution)으로 예측해야 한다.
 
-<The Langevin Trader: LSTM & SDE 기반 주가 예측 시뮬레이터>
+기존의 단순 딥러닝 주가 예측은 미래의 불확실성(Uncertainty)을 고려하지 않고 단일 가격만을 예측하여 리스크 관리에 취약했습니다.
 
-# 1. 개요 (Abstract)
-기존의 주가 예측 모델들은 단순히 '내일의 가격'을 점 하나로 예측하려다 보니 정확도가 떨어지고 리스크 관리가 불가능했습니다. 
-본 프로젝트는 '딥러닝(LSTM)'으로 주가의 추세를 학습하고, 수업 시간에 배운 '확률 미분 방정식'과 '몬테카를로 시뮬레이션(Monte Carlo)'을 결합하여 미래 주가의 '확률적 분포'를 예측하는 하이브리드 시스템입니다.
+본 프로젝트 [The Langevin Trader]는 딥러닝(LSTM)으로 주가의 장기적인 '추세(Drift)'를 학습하고, 수업 시간에 배운 랑주뱅 역학(Langevin Dynamics)을 적용하여 시장의 무작위성(Noise)을 반영한 확률적 시뮬레이터입니다.
 
-# 2. 수업 내용 적용 (Curriculum Mapping)
-이 프로젝트는 '기계학습과 응용' 수업의 핵심 이론들을 실제 금융 데이터에 적용했습니다.
+사용자가 원하는 기업(한국/미국)의 코드를 입력하면, AI가 해당 기업의 미래 주가 변동 범위를 예측하여 시각화합니다.
 
- 2.1 시계열 추세 학습 (Time Series Learning)
-* 적용 기술: LSTM (Long Short-Term Memory)
-* 수업 연계: RNN/LSTM 강의 (11월 17일)
-* 구현: 주가 데이터의 시퀀스(Sequence)를 입력받아 장기 의존성(Long-term dependency)을 학습하고, 주가의 Drift(이동 방향)를 예측합니다.
+# 2. 수업 내용 적용 및 기술적 배경 (Theoretical Background)본 프로젝트는 [2025 딥러닝] 수업의 커리큘럼을 단계별로 충실히 구현했습니다.
 
- 2.2 확률적 시뮬레이션 (Stochastic Simulation)
-* 적용 기술: MCMC & Langevin Dynamics (SDE)
-* 수업 연계: MCMC 및 Diffusion Model 강의
-* 구현: 미래의 주가를 결정론적(Deterministic)으로 계산하지 않고, 랑주뱅 역학의 원리인 'Gradient(LSTM 예측값) + Noise(시장 변동성)' 구조를 사용하여 1,000번 이상의 시뮬레이션을 수행합니다.
-    * 수식: $S_{t+1} = S_t + \mu(LSTM) \Delta t + \sigma \epsilon \sqrt{\Delta t}$
-    * ($\mu$: LSTM이 학습한 추세, $\sigma$: 변동성, $\epsilon$: 가우시안 노이즈)
+2.1 시계열 추세 학습 (Deep Learning)
 
- 2.3 최적화 (Optimization)
-* 적용 기술: Adam Optimizer & MSE Loss
-* 수업 연계: Gradient Descent 강의 (9월 24일)
-* 구현: LSTM 모델 학습 시 역전파(Backpropagation)를 통해 손실을 최소화합니다.
+적용 이론: RNN & LSTM (Long Short-Term Memory)
 
-# 3. 실행 방법 (How to Run)
- 3.1. 필요 라이브러리 설치: `pip install -r requirements.txt`
- 
- 3.2. 실행: `python main.py`
- 
- 3.3. 기업 코드(Ticker) 입력 (예: 삼성전자 `005930.KS`, 애플 `AAPL`)
- 
- 3.4. 결과 그래프 확인 (LSTM 예측선 + 몬테카를로 시뮬레이션 범위)
+수업 연계: [LSTM] 
 
-# 4. 결과 해석
-* 파란선: 실제 과거 주가
-* 빨간선: LSTM이 예측한 기준 추세선 (Drift)
-* 회색 영역: 몬테카를로 시뮬레이션으로 예측된 주가 변동 범위 (불확실성 시각화)
+강의구현 내용:주가 데이터는 전형적인 시계열(Time-series) 데이터입니다.단순 RNN의 장기 의존성(Long-term dependency) 문제를 해결하기 위해 LSTM 모델을 직접 설계했습니다 (StockLSTM 클래스).과거 60일간의 데이터를 Input Gate, Forget Gate를 통과시켜 주가의 **상승/하락 모멘텀(Drift)**을 추출합니다.
+
+2.2 최적화 및 학습 (Optimization)
+
+적용 이론: Gradient Descent & Backpropagation
+
+수업 연계: [Gradient Descent] 
+
+강의구현 내용: API에 의존하지 않고 PyTorch의 학습 루프를 직접 구현했습니다. optimizer.zero_grad()로 그레디언트 누적을 방지하고, loss.backward()로 오차를 역전파하여 파라미터를 업데이트합니다.
+
+2.3 확률적 시뮬레이션 (Stochastic Process)
+
+적용 이론: MCMC (Markov Chain Monte Carlo) & Langevin Dynamics
+
+수업 연계: [MCMC],[Diffusion Model] 
+
+강의구현 내용 (핵심 차별점):미래 주가를 결정론적(Deterministic)으로 계산하지 않고, '확률 미분 방정식(SDE)'을 이산화(Discretization)하여 시뮬레이션합니다.
+
+수식 적용: $S_{t+1} = S_t \times (1 + \mu \Delta t + \sigma \epsilon \sqrt{\Delta t})$
+
+$\mu$ (Drift): LSTM 모델이 예측한 주가의 기울기 사용.
+
+$\sigma$ (Diffusion): 최근 주가의 변동성(Volatility)을 계산하여 적용.$\epsilon$ (Noise): MCMC 강의에서 배운 정규분포($N(0,1)$) 노이즈 샘플링.
+
+# 3. 주요 기능 (Features)
+
+다국적 기업 지원: 삼성전자, 카카오 등 국내 주식(.KS, .KQ) 뿐만 아니라 애플, 테슬라 등 해외 주식(Ticker) 데이터도 실시간으로 불러옵니다.
+
+하이브리드 예측: LSTM(인공지능)의 예측력과 Monte Carlo(통계학)의 다양성을 결합했습니다.
+
+리스크 시각화: 미래 주가가 움직일 수 있는 95% 신뢰 구간(Confidence Interval)을 시각화하여, 최악/최선의 시나리오를 한눈에 보여줍니다.
+
+# 4. 실행 방법 (How to Run)
+
+4.1 환경 설정필요한 라이브러리를 설치합니다.
+
+Bashpip install torch numpy pandas matplotlib yfinance scikit-learn
+
+4.2 실행터미널에서 아래 명령어를 입력합니다.
+
+Bashpython main.py
+
+4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
+
+삼성전자: 엔터(Enter) 키 입력 (기본값)
+
+현대차: 005380.KS에코프로: 086520.KQ
+
+애플: AAPL엔비디아: NVDA5. 
+
+# 결과 해석 (Result Interpretation)
+
+그래프 창이 뜨면 다음과 같이 해석합니다.
+
+파란 선 (History): 과거 실제 주가 흐름입니다.
+
+빨간 선 (LSTM Trend): AI가 예측한 가장 유력한 미래 주가 추세입니다. (이동 평균적 성격)
+
+회색 영역 (Simulations): 1,000번의 랑주뱅 시뮬레이션 결과입니다. 색이 진할수록 실현 가능성이 높은 구간입니다.
+
+주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
