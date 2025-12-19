@@ -88,4 +88,10 @@ python main.py
 ● 주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
 
 
+📦 Project Structure
+├── main.py          # 핵심 실행 파일 (LSTM + MCMC 로직)
+├── requirements.txt # 의존성 라이브러리 목록
+├── README.md        # 프로젝트 설명서
+└── results/         # 실행 결과 이미지 저장소
+    └── example_plot.png
 
