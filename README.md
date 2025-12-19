@@ -56,11 +56,13 @@ $\sigma$ (Diffusion): 최근 주가의 변동성(Volatility)을 계산하여 적
 ● 4.1 환경 설정필요한 라이브러리를 설치합니다.
 
 Bash
+
 pip install torch numpy pandas matplotlib yfinance scikit-learn
 
 ● 4.2 실행터미널에서 아래 명령어를 입력합니다.
 
 Bash
+
 python main.py
 
 ● 4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
