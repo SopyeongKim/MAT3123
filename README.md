@@ -13,7 +13,7 @@
 
 본 프로젝트는 [2025-2 기계학습과 응용] 수업의 커리큘럼을 단계별로 충실히 구현했습니다.
 
-2.1 시계열 추세 학습 (Deep Learning)
+● 2.1 시계열 추세 학습 (Deep Learning)
 
 적용 이론: RNN & LSTM (Long Short-Term Memory)
 
@@ -21,7 +21,7 @@
 
 강의구현 내용:주가 데이터는 전형적인 시계열(Time-series) 데이터입니다.단순 RNN의 장기 의존성(Long-term dependency) 문제를 해결하기 위해 LSTM 모델을 직접 설계했습니다 (StockLSTM 클래스).과거 60일간의 데이터를 Input Gate, Forget Gate를 통과시켜 주가의 **상승/하락 모멘텀(Drift)**을 추출합니다.
 
-2.2 최적화 및 학습 (Optimization)
+● 2.2 최적화 및 학습 (Optimization)
 
 적용 이론: Gradient Descent & Backpropagation
 
@@ -29,7 +29,7 @@
 
 강의구현 내용: API에 의존하지 않고 PyTorch의 학습 루프를 직접 구현했습니다. optimizer.zero_grad()로 그레디언트 누적을 방지하고, loss.backward()로 오차를 역전파하여 파라미터를 업데이트합니다.
 
-2.3 확률적 시뮬레이션 (Stochastic Process)
+● 2.3 확률적 시뮬레이션 (Stochastic Process)
 
 적용 이론: MCMC (Markov Chain Monte Carlo) & Langevin Dynamics
 
@@ -53,15 +53,15 @@ $\sigma$ (Diffusion): 최근 주가의 변동성(Volatility)을 계산하여 적
 
 # 4. 실행 방법 (How to Run)
 
-4.1 환경 설정필요한 라이브러리를 설치합니다.
+● 4.1 환경 설정필요한 라이브러리를 설치합니다.
 
 Bashpip install torch numpy pandas matplotlib yfinance scikit-learn
 
-4.2 실행터미널에서 아래 명령어를 입력합니다.
+● 4.2 실행터미널에서 아래 명령어를 입력합니다.
 
 Bashpython main.py
 
-4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
+● 4.3 입력 예시프로그램이 실행되면 분석하고 싶은 기업의 코드를 입력하세요.
 
 삼성전자: 엔터(Enter) 키 입력 (기본값)
 
@@ -73,10 +73,10 @@ Bashpython main.py
 
 그래프 창이 뜨면 다음과 같이 해석합니다.
 
-파란 선 (History): 과거 실제 주가 흐름입니다.
+● 파란 선 (History): 과거 실제 주가 흐름입니다.
 
-빨간 선 (LSTM Trend): AI가 예측한 가장 유력한 미래 주가 추세입니다. (이동 평균적 성격)
+● 빨간 선 (LSTM Trend): AI가 예측한 가장 유력한 미래 주가 추세입니다. (이동 평균적 성격)
 
-회색 영역 (Simulations): 1,000번의 랑주뱅 시뮬레이션 결과입니다. 색이 진할수록 실현 가능성이 높은 구간입니다.
+● 회색 영역 (Simulations): 1,000번의 랑주뱅 시뮬레이션 결과입니다. 색이 진할수록 실현 가능성이 높은 구간입니다.
 
-주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
+● 주황색 영역 (Confidence Interval): 통계적으로 주가가 존재할 확률이 95%인 범위입니다. 이 범위가 좁을수록 예측 신뢰도가 높습니다.
